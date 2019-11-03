@@ -22,5 +22,9 @@ class InsertionSortTest extends FunSuite {
     assertResult(List())(actual)
   }
 
+  test("Sort a list of strings") {
+    val actual = InsertionSort.isort(List("Alpha", "Zeta", "Omega", "Hello", ""))
+    assertResult(List("", "Alpha", "Hello", "Omega", "Zeta"))(actual)
+  }
 
 }

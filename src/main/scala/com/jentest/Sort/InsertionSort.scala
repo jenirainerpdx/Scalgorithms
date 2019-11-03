@@ -1,15 +1,15 @@
 package com.jentest.Sort
 
 object InsertionSort {
-  def isort(xs: List[Int]): List[Int] = xs match {
+  def isort[T](xs: List[T])(implicit ord: Ordering[T]): List[T] = xs match {
     case List() => List()
-    case y :: ys => insert(y, isort(ys))
+    case y :: ys => insert(y, isort(ys))(ord)
   }
 
-  def insert(x: Int, xs: List[Int]): List[Int] = xs match {
-    case List() => List(x)
+  def insert[T](x: T, xs: List[T])(ord: Ordering[T]): List[T] = xs match {
+    case List() => List[T](x)
     case y :: ys =>
-      if (x <= y) x :: xs
-      else y :: insert(x, ys)
+      if (ord.lteq(x,y)) x :: xs
+      else y :: insert(x, ys)(ord)
   }
 }
